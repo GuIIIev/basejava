@@ -5,20 +5,26 @@ import java.util.Objects;
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
+    private int size;
+
+    public ArrayStorage() {
+        size = 0;
+    }
 
     void clear() {
+        size = 0; // обнуление кол-ва резюме в массиве
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] == null) {
                 return;
-            } else {
-                storage[i] = null;
             }
+            storage[i] = null;
         }
     }
 
     void save(Resume r) {
-        for (int i  = 0; i < storage.length; i++) {
+        for (int i = 0; i < storage.length; i++) {
             if (storage[i] == null) {
+                size++; // +1 кол-во резюме в массиве
                 storage[i] = r;
                 return;
             }
@@ -40,9 +46,10 @@ public class ArrayStorage {
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] == null) {
                 return;
-            } else if(Objects.equals(storage[i].uuid,uuid)) {
+            } else if (Objects.equals(storage[i].uuid, uuid)) {
+                size--; // -1 кол-во резюме в массиве
                 for (int j = i + 1; j < storage.length; j++) {
-                    storage[j-1] = storage[j];
+                    storage[j - 1] = storage[j];
                     if (storage[j] == null) {
                         return;
                     }
@@ -55,10 +62,10 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        if (this.size() == 0) {
+        if (size == 0) {
             return new Resume[0];
         }
-        Resume[] newStorage = new Resume[this.size()];
+        Resume[] newStorage = new Resume[size];
         for (int i = 0; i < newStorage.length; i++) {
             newStorage[i] = storage[i];
         }
@@ -66,14 +73,6 @@ public class ArrayStorage {
     }
 
     int size() {
-        int counter = 0;
-        for (int i = 0; i < storage.length; i++) {
-            if (storage[i] == null) {
-                return counter;
-            } else {
-                counter++;
-            }
-        }
-        return 0;
+        return size;
     }
 }
