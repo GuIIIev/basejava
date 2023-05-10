@@ -8,30 +8,20 @@ public class ArrayStorage {
     private int size;
 
     void clear() {
-        size = 0; // обнуление кол-ва резюме в массиве
-        for (int i = 0; i < storage.length; i++) {
-            if (storage[i] == null) {
-                return;
-            }
+        for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
+        size = 0;
     }
 
     void save(Resume r) {
-        for (int i = 0; i < storage.length; i++) {
-            if (storage[i] == null) {
-                size++; // +1 кол-во резюме в массиве
-                storage[i] = r;
-                return;
-            }
-        }
+        storage[size] = r;
+        size++;
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
-            if (storage[i] == null) {
-                return null;
-            } else if (Objects.equals(storage[i].uuid, uuid)) {
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(storage[i].uuid, uuid)) {
                 return storage[i];
             }
         }
@@ -39,17 +29,13 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
-            if (storage[i] == null) {
-                return;
-            } else if (Objects.equals(storage[i].uuid, uuid)) {
-                size--; // -1 кол-во резюме в массиве
-                for (int j = i + 1; j < storage.length; j++) {
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(storage[i].uuid, uuid)) {
+                for (int j = i + 1; j < size; j++) {
                     storage[j - 1] = storage[j];
-                    if (storage[j] == null) {
-                        return;
-                    }
                 }
+                storage[size] = null;
+                size--;
             }
         }
     }
@@ -62,7 +48,7 @@ public class ArrayStorage {
             return new Resume[0];
         }
         Resume[] newStorage = new Resume[size];
-        for (int i = 0; i < newStorage.length; i++) {
+        for (int i = 0; i < size; i++) {
             newStorage[i] = storage[i];
         }
         return newStorage;
