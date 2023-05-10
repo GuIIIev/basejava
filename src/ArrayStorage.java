@@ -7,10 +7,6 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
     private int size;
 
-    public ArrayStorage() {
-        size = 0;
-    }
-
     void clear() {
         size = 0; // обнуление кол-ва резюме в массиве
         for (int i = 0; i < storage.length; i++) {
