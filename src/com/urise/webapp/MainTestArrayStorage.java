@@ -35,6 +35,7 @@ public class MainTestArrayStorage {
         printAll();
         ARRAY_STORAGE.update(r4);
 
+        //Checks in methods
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.get(r5.getUuid());
         ARRAY_STORAGE.update(r5);

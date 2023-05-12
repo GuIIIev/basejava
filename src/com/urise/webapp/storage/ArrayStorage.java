@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -12,10 +13,8 @@ public class ArrayStorage {
     private int size;
 
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            storage[i] = null;
-        }
         size = 0;
+        Arrays.fill(storage, null);
     }
 
     public void update(Resume r) {
@@ -51,10 +50,8 @@ public class ArrayStorage {
 
     public void delete(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (Objects.equals(storage[i].getUuid(), uuid)) {
-                for (int j = i + 1; j < size; j++) {
-                    storage[j - 1] = storage[j];
-                }
+            if (storage[i].getUuid() == uuid) {
+                storage[i] = storage[size - 1];
                 storage[size] = null;
                 size--;
                 return;
@@ -70,11 +67,7 @@ public class ArrayStorage {
         if (size == 0) {
             return new Resume[0];
         }
-        Resume[] newStorage = new Resume[size];
-        for (int i = 0; i < size; i++) {
-            newStorage[i] = storage[i];
-        }
-        return newStorage;
+        return Arrays.copyOf(storage, size);
     }
 
     public int size() {
