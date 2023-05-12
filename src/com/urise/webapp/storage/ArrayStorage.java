@@ -8,46 +8,65 @@ import java.util.Objects;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10000];
     private int size;
 
-    void clear() {
+    public void clear() {
         for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
         size = 0;
     }
 
-    void save(Resume r) {
+    public void update(Resume r) {
+        for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid() == r.getUuid()) {
+                storage[i] = r;
+                return;
+            }
+        }
+        System.out.println("Resume " + r.getUuid() + " not found.");
+    }
+
+    public void save(Resume r) {
+        for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid() == r.getUuid()) {
+                System.out.println("Resume " + r.getUuid() + " already exists");
+                return;
+            }
+        }
         storage[size] = r;
         size++;
     }
 
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (Objects.equals(storage[i].uuid, uuid)) {
+            if (Objects.equals(storage[i].getUuid(), uuid)) {
                 return storage[i];
             }
         }
+        System.out.println("Resume " + uuid + " not found.");
         return null;
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (Objects.equals(storage[i].uuid, uuid)) {
+            if (Objects.equals(storage[i].getUuid(), uuid)) {
                 for (int j = i + 1; j < size; j++) {
                     storage[j - 1] = storage[j];
                 }
                 storage[size] = null;
                 size--;
+                return;
             }
         }
+        System.out.println("Resume " + uuid + " not found.");
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll() {
+    public Resume[] getAll() {
         if (size == 0) {
             return new Resume[0];
         }
@@ -58,7 +77,7 @@ public class ArrayStorage {
         return newStorage;
     }
 
-    int size() {
+    public int size() {
         return size;
     }
 }
