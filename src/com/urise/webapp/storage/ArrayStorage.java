@@ -34,6 +34,10 @@ public class ArrayStorage {
                 return;
             }
         }
+        if (size == storage.length) {
+            System.out.println("Storage overflow");
+            return;
+        }
         storage[size] = r;
         size++;
     }
