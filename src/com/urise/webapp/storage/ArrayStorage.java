@@ -63,9 +63,6 @@ public class ArrayStorage implements Storage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        if (size == 0) {
-            return new Resume[0];
-        }
         return Arrays.copyOf(storage, size);
     }
 
