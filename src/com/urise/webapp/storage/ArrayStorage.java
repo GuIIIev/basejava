@@ -62,7 +62,7 @@ public class ArrayStorage extends AbstractArrayStorage {
         return Arrays.copyOf(storage, size);
     }
 
-    private int getIndex(String uuid) {
+    protected int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid() == uuid) {
                 return i;
