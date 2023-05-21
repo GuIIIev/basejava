@@ -17,17 +17,23 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void save(Resume r) {
-
+        int index = getIndex(r.getUuid());
+        if (size == storage.length) {
+            System.out.println("Storage overflow");
+        } else if (index >= 0) {
+            System.out.println("Resume " + r.getUuid() + " already exists");
+        } else {
+            size++;
+            for (int i = size - 1; i > Math.abs(index) - 1; i--) {
+                storage[i] = storage[i - 1];
+            }
+            storage[Math.abs(index) - 1] = r;
+        }
     }
 
     @Override
     public void delete(String uuid) {
 
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return new Resume[0];
     }
 
     @Override

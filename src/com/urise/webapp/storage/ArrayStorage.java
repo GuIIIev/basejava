@@ -3,7 +3,6 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Array based storage for Resumes
@@ -49,13 +48,10 @@ public class ArrayStorage extends AbstractArrayStorage {
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
-    }
 
     protected int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (Objects.equals(storage[i].getUuid(), uuid)) {
+            if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
