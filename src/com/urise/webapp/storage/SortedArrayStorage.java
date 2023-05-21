@@ -5,15 +5,6 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public void update(Resume r) {
-
-    }
 
     @Override
     public void save(Resume r) {
@@ -33,7 +24,16 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void delete(String uuid) {
-
+        int index = getIndex(uuid);
+        if (index < 0) {
+            System.out.println("Resume " + uuid + " not found.");
+        } else {
+            for (int i = index; i < size; i++) {
+                storage[i] = storage[i + 1];
+            }
+            storage[size - 1] = null;
+            size--;
+        }
     }
 
     @Override
