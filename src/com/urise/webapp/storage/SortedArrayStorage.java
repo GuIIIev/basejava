@@ -14,11 +14,12 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         } else if (index >= 0) {
             System.out.println("Resume " + r.getUuid() + " already exists");
         } else {
+            index = Math.abs(index) - 1;
             size++;
-            for (int i = size - 1; i > Math.abs(index) - 1; i--) {
+            for (int i = size - 1; i > index; i--) {
                 storage[i] = storage[i - 1];
             }
-            storage[Math.abs(index) - 1] = r;
+            storage[index] = r;
         }
     }
 
