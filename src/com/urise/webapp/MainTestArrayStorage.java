@@ -26,7 +26,7 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r4);
         ARRAY_STORAGE.save(r5);
-        ARRAY_STORAGE.save(r3);
+        ARRAY_STORAGE.save(r3); //for SortedArrayStorage
 
         printAll();
 
