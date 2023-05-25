@@ -15,6 +15,15 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
+    public final void update(Resume r) {
+        int index = getIndex(r.getUuid());
+        if (index < 0) {
+            System.out.println("Resume " + r.getUuid() + " not found.");
+        } else {
+            storage[index] = r;
+        }
+    }
+
     public final void save(Resume r) {
         int index = getIndex(r.getUuid());
         if (size == storage.length) {
@@ -23,24 +32,6 @@ public abstract class AbstractArrayStorage implements Storage {
             System.out.println("Resume " + r.getUuid() + " already exists");
         } else {
             insertion(r, index);
-        }
-    }
-
-    public final void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
-            System.out.println("Resume " + uuid + " not found.");
-        } else {
-            extraction(uuid, index);
-        }
-    }
-
-    public final void update(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index < 0) {
-            System.out.println("Resume " + r.getUuid() + " not found.");
-        } else {
-            storage[index] = r;
         }
     }
 
@@ -53,8 +44,22 @@ public abstract class AbstractArrayStorage implements Storage {
         return storage[index];
     }
 
+    public final void delete(String uuid) {
+        int index = getIndex(uuid);
+        if (index < 0) {
+            System.out.println("Resume " + uuid + " not found.");
+        } else {
+            extraction(uuid, index);
+        }
+    }
+
+
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
+    }
+
+    public int size() {
+        return size;
     }
 
     protected abstract int getIndex(String uuid);
@@ -62,8 +67,4 @@ public abstract class AbstractArrayStorage implements Storage {
     protected abstract void insertion(Resume r, int index);
 
     protected abstract void extraction(String uuid, int index);
-
-    public int size() {
-        return size;
-    }
 }

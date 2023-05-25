@@ -6,19 +6,6 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
-/*    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
-            System.out.println("Resume " + uuid + " not found.");
-        } else {
-            for (int i = index; i < size; i++) {
-                storage[i] = storage[i + 1];
-            }
-            storage[size - 1] = null;
-            size--;
-        }
-    }*/
-
     @Override
     protected int getIndex(String uuid) {
         Resume searchKey = new Resume();
