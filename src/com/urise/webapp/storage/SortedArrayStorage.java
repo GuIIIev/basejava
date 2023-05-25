@@ -6,25 +6,7 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
-    @Override
-    public void save(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (size == storage.length) {
-            System.out.println("Storage overflow");
-        } else if (index >= 0) {
-            System.out.println("Resume " + r.getUuid() + " already exists");
-        } else {
-            index = Math.abs(index) - 1;
-            size++;
-            for (int i = size - 1; i > index; i--) {
-                storage[i] = storage[i - 1];
-            }
-            storage[index] = r;
-        }
-    }
-
-    @Override
-    public void delete(String uuid) {
+/*    public void delete(String uuid) {
         int index = getIndex(uuid);
         if (index < 0) {
             System.out.println("Resume " + uuid + " not found.");
@@ -35,12 +17,31 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             storage[size - 1] = null;
             size--;
         }
-    }
+    }*/
 
     @Override
     protected int getIndex(String uuid) {
         Resume searchKey = new Resume();
         searchKey.setUuid(uuid);
         return Arrays.binarySearch(storage, 0, size, searchKey);
+    }
+
+    @Override
+    protected void insertion(Resume r, int index) {
+        index = Math.abs(index) - 1;
+        size++;
+        if (size - index - 1 >= 0) {
+            System.arraycopy(storage, index, storage, index + 1, size - index - 1);
+        }
+        storage[index] = r;
+    }
+
+    @Override
+    protected void extraction(String uuid, int index) {
+        if (size - index >= 0) {
+            System.arraycopy(storage, index + 1, storage, index, size - index);
+        }
+        storage[size - 1] = null;
+        size--;
     }
 }
