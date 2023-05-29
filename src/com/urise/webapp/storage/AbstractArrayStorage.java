@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.excaption.ExistStorageException;
 import com.urise.webapp.excaption.NotExistStorageException;
+import com.urise.webapp.excaption.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public final void save(Resume r) {
         int index = getIndex(r.getUuid());
         if (size == storage.length) {
-            System.out.println("Storage overflow");
+            throw new StorageException("Storage overflow", r.getUuid());
         } else if (index >= 0) {
             throw new ExistStorageException(r.getUuid());
         } else {
@@ -53,7 +54,6 @@ public abstract class AbstractArrayStorage implements Storage {
             extractResume(uuid, index);
         }
     }
-
 
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
