@@ -14,10 +14,12 @@ public class MainReflection {
         System.out.println(field.getName());
         System.out.println(field.get(r));
         field.set(r, "new_uuid");
-        System.out.println(r.toString());
-        Method method = r.getClass().getMethods()[1];
 
+        //invoke toString() via reflection
+        Method method = r.getClass().getMethods()[1];
+        method.setAccessible(true);
         System.out.println(method.invoke(r));
+
         System.out.println(r);
     }
 }

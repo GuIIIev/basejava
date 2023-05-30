@@ -9,7 +9,7 @@ public interface Storage {
 
     void clear();
 
-    Object update(Resume r);
+    void update(Resume r);
 
     void save(Resume r);
 
