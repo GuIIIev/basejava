@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public abstract class AbstractArrayStorageTest {
     private final Storage storage;
+    private static final int STORAGE_LIMIT = 10000;
 
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
@@ -22,7 +23,6 @@ public abstract class AbstractArrayStorageTest {
     private final Resume RESUME_3 = new Resume(UUID_3);
     private final Resume RESUME_4 = new Resume(UUID_4);
 
-    private static final int STORAGE_LIMIT = 10000;
 
     public AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
