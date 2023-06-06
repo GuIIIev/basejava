@@ -38,5 +38,20 @@ public class MainCollections {
             }
         }
         System.out.println(collection.toString());
+
+        Map<String, Resume> map = new HashMap<>();
+        map.put(UUID_1, RESUME_1);
+        map.put(UUID_2, RESUME_2);
+        map.put(UUID_3, RESUME_3);
+
+        for (String uuid : map.keySet()) {
+            System.out.println(map.get(uuid));
+        }
+
+        System.out.println(map.get(UUID_2));
+        System.out.println();
+        for (Map.Entry<String, Resume> entry : map.entrySet()) {
+            System.out.println(entry.getValue());
+        }
     }
 }
