@@ -1,7 +1,5 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.excaption.ExistStorageException;
-import com.urise.webapp.excaption.NotExistStorageException;
 import com.urise.webapp.excaption.StorageException;
 import com.urise.webapp.model.Resume;
 
@@ -19,7 +17,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
     }
 
     @Override
-    protected void updateResume(Resume r, int index) {
+    protected void doUpdate(Resume r, int index) {
         storage[index] = r;
     }
 
@@ -32,21 +30,13 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
         }
     }
 
-    public final Resume get(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
-            throw new NotExistStorageException(uuid);
-        }
+    @Override
+    protected Resume doGet(String uuid, int index) {
         return storage[index];
     }
 
-    public final void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
-            throw new NotExistStorageException(uuid);
-        } else {
-            extractResume(uuid, index);
-        }
+    public final void doDelete(int index) {
+        extractResume(index);
     }
 
     public Resume[] getAll() {
@@ -61,5 +51,5 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
 
     protected abstract void insertResume(Resume r, int index);
 
-    protected abstract void extractResume(String uuid, int index);
+    protected abstract void extractResume(int index);
 }

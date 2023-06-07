@@ -11,12 +11,12 @@ public abstract class AbstractStorage implements Storage {
     //методы для реализации наследников
     //методы для реализации наследников
 
-    public void update(Resume r) {
+    public final void update(Resume r) {
         int index = getIndex(r.getUuid());
         if (index < 0) {
             throw new NotExistStorageException(r.getUuid());
         } else {
-            updateResume(r, index);
+            doUpdate(r, index);
         }
     }
 
@@ -29,21 +29,31 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
+    public final Resume get(String uuid) {
+        int index = getIndex(uuid);
+        if (index < 0) {
+            throw new NotExistStorageException(uuid);
+        }
+        return doGet(uuid, index);
+    }
+
     public final void delete(String uuid) {
         int index = getIndex(uuid);
         if (index < 0) {
             throw new NotExistStorageException(uuid);
         } else {
-            extractResume(uuid, index);
+            doDelete(index);
         }
     }
 
 
     protected abstract int getIndex(String uuid);
 
-    protected abstract void updateResume(Resume r, int index);
+    protected abstract void doUpdate(Resume r, int index);
 
     protected abstract void doSave(Resume r, int index);
 
-    protected abstract void extractResume(String uuid, int index);
+    protected abstract Resume doGet(String uuid, int index);
+
+    protected abstract void doDelete(int index);
 }

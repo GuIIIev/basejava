@@ -23,7 +23,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void extractResume(String uuid, int index) {
+    protected void extractResume(int index) {
         if (size - index >= 0) {
             System.arraycopy(storage, index + 1, storage, index, size - index);
         }
