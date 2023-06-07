@@ -19,21 +19,14 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
     }
 
     @Override
-    public final void update(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index < 0) {
-            throw new NotExistStorageException(r.getUuid());
-        } else {
-            storage[index] = r;
-        }
+    protected void updateResume(Resume r, int index) {
+        storage[index] = r;
     }
 
-    public final void save(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (size == storage.length) {
+    @Override
+    public final void doSave(Resume r, int index) {
+        if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
-        } else if (index >= 0) {
-            throw new ExistStorageException(r.getUuid());
         } else {
             insertResume(r, index);
         }
