@@ -40,7 +40,6 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
-
     protected abstract int getIndex(String uuid);
 
     protected abstract void doUpdate(Resume r, int index);
