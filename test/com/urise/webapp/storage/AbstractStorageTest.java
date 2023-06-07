@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public abstract class AbstractArrayStorageTest {
+public abstract class AbstractStorageTest {
     private final Storage storage;
 
     private static final String UUID_1 = "uuid1";
@@ -23,7 +23,7 @@ public abstract class AbstractArrayStorageTest {
     private static final Resume RESUME_4 = new Resume(UUID_4);
 
 
-    public AbstractArrayStorageTest(Storage storage) {
+    public AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
 
@@ -81,7 +81,7 @@ public abstract class AbstractArrayStorageTest {
         } catch (StorageException e) {
             Assert.fail();
         }
-        storage.save(new Resume("uuidOverflow"));
+        storage.save(new Resume());
     }
 
     @Test

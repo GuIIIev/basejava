@@ -4,6 +4,7 @@ import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.ListStorage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class MainCollections {
@@ -51,11 +52,15 @@ public class MainCollections {
         for (Map.Entry<String, Resume> entry : map.entrySet()) {
             System.out.println(entry.getValue());
         }*/
+
         list.save(RESUME_1);
         list.save(RESUME_2);
         list.save(RESUME_3);
         System.out.println(list.get(RESUME_2.getUuid()));
         //list.get(RESUME_4.getUuid());
-
+        System.out.println(Arrays.toString(list.getAll()));
+        System.out.println("Size " + list.size());
+        list.delete(UUID_2);
+        System.out.println(Arrays.toString(list.getAll()));
     }
 }
