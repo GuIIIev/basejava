@@ -1,8 +1,10 @@
 package com.urise.webapp;
 
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.ListStorage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class MainCollections {
     private static final String UUID_1 = "uuid1";
@@ -16,20 +18,16 @@ public class MainCollections {
     private static final Resume RESUME_3 = new Resume(UUID_3);
     private static final Resume RESUME_4 = new Resume(UUID_4);
 
+    static final ListStorage list = new ListStorage();
+
     public static void main(String[] args) {
         Collection<Resume> collection = new ArrayList();
         collection.add(RESUME_1);
         collection.add(RESUME_2);
         collection.add(RESUME_3);
 
-        for (Resume r : collection) {
-            System.out.println(r);
-            if (Objects.equals(r.getUuid(), UUID_1)) {
-//                collection.remove(r);
-            }
-        }
 
-        Iterator<Resume> iterator = collection.iterator();
+        /*Iterator<Resume> iterator = collection.iterator();
         while (iterator.hasNext()) {
             Resume r = iterator.next();
             System.out.println(r);
@@ -52,6 +50,12 @@ public class MainCollections {
         System.out.println();
         for (Map.Entry<String, Resume> entry : map.entrySet()) {
             System.out.println(entry.getValue());
-        }
+        }*/
+        list.save(RESUME_1);
+        list.save(RESUME_2);
+        list.save(RESUME_3);
+        System.out.println(list.get(RESUME_2.getUuid()));
+        //list.get(RESUME_4.getUuid());
+
     }
 }
