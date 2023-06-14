@@ -36,19 +36,20 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     public Resume[] getAll() {
-        return new Resume[0];
+        return map.values().toArray(new Resume[0]);
     }
 
     @Override
     public int size() {
-        return 0;
+        return map.size();
     }
 
     @Override
     protected Object getSearchKey(String uuid) {
         Set<String> keys = map.keySet();
-        for (int i = 0; i < keys.size(); i++) {
-            if (keys.equals(uuid)) {
+        List<String> stringsList = new ArrayList<>(keys);
+        for (int i = 0; i < stringsList.size(); i++) {
+            if (stringsList.get(i).equals(uuid)) {
                 return i;
             }
         }
