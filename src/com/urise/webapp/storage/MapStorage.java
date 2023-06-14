@@ -9,6 +9,12 @@ public class MapStorage extends AbstractStorage {
     private final Map<String, Resume> map = new HashMap<>();
 
     @Override
+    public void clear() {
+        Set<String> set = new HashSet<>(map.keySet());
+        map.keySet().removeAll(set);
+    }
+
+    @Override
     protected void doUpdate(Resume r, Object searchKey) {
         map.put(r.getUuid(), r);
     }
@@ -28,11 +34,6 @@ public class MapStorage extends AbstractStorage {
         map.remove(uuid);
     }
 
-    @Override
-    public void clear() {
-        Set<String> set = new HashSet<>(map.keySet());
-        map.keySet().removeAll(set);
-    }
 
     @Override
     public Resume[] getAll() {
