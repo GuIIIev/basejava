@@ -10,8 +10,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     public void clear() {
-        Set<String> set = new HashSet<>(map.keySet());
-        map.keySet().removeAll(set);
+        map.clear();
     }
 
     @Override
@@ -21,7 +20,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected void doSave(Resume r, Object searchKey) {
-        map.putIfAbsent(r.getUuid(), r);
+        map.put(r.getUuid(), r);
     }
 
     @Override
@@ -48,10 +47,9 @@ public class MapStorage extends AbstractStorage {
     @Override
     protected Object getSearchKey(String uuid) {
         Set<String> keys = map.keySet();
-        List<String> stringsList = new ArrayList<>(keys);
-        for (int i = 0; i < stringsList.size(); i++) {
-            if (stringsList.get(i).equals(uuid)) {
-                return i;
+        for (String s : keys) {
+            if (s.equals(uuid)) {
+                return uuid;
             }
         }
         return null;
@@ -59,6 +57,6 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object searchKey) {
-        return searchKey != null;
+        return map.containsKey(searchKey);
     }
 }
