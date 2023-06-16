@@ -35,6 +35,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
         return storage[(Integer) searchKey];
     }
 
+    @Override
     public final void doDelete(String uuid, Object searchKey) {
         extractResume((Integer) searchKey);
     }
