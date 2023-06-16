@@ -62,5 +62,9 @@ public class MainCollections {
         System.out.println("Size " + list.size());
         list.delete(UUID_2);
         System.out.println(Arrays.toString(list.getAll()));
+        for (Resume r : list.getAll()) {
+            System.out.println(r.getUuid());
+        }
+
     }
 }
