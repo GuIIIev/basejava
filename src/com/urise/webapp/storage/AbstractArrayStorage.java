@@ -3,7 +3,7 @@ package com.urise.webapp.storage;
 import com.urise.webapp.excaption.StorageException;
 import com.urise.webapp.model.Resume;
 
-import java.util.Arrays;
+import java.util.*;
 
 public abstract class AbstractArrayStorage extends AbstractStorage implements Storage {
     protected static final int STORAGE_LIMIT = 10000;
@@ -40,10 +40,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
         extractResume((Integer) searchKey);
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
-    }
-
     public int size() {
         return size;
     }
@@ -51,6 +47,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage implements St
     @Override
     protected boolean isExist(Object searchKey) {
         return (Integer) searchKey >= 0;
+    }
+
+    @Override
+    protected List<Resume> doCopyAll() {
+        return Arrays.asList(Arrays.copyOf(storage, size));
     }
 
     @Override

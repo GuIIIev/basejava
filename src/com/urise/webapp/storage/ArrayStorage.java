@@ -28,4 +28,5 @@ public class ArrayStorage extends AbstractArrayStorage {
         storage[size - 1] = null;
         size--;
     }
+
 }

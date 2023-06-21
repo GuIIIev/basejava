@@ -11,21 +11,22 @@ public class MainTestArrayStorage {
     static final SortedArrayStorage ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
-        Resume r1 = new Resume("uuid1");
-        Resume r2 = new Resume("uuid2");
-        Resume r4 = new Resume("uuid4");
-        Resume r5 = new Resume("uuid5");
-        Resume r3 = new Resume("uuid3");
-        Resume r6 = new Resume("uuid3");
+        Resume r1 = new Resume("uuid1", "Aaron");
+        Resume r2 = new Resume("uuid2", "Brave");
+        Resume r4 = new Resume("uuid4", "Dug");
+        Resume r5 = new Resume("uuid5", "Eton");
+        Resume r3 = new Resume("uuid3", "Charly");
+        //Resume r6 = new Resume("uuid3");
 
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r4);
         ARRAY_STORAGE.save(r5);
         ARRAY_STORAGE.save(r3); //for SortedArrayStorage
-        ARRAY_STORAGE.save(r6);
+        //ARRAY_STORAGE.save(r6);
 
         printAll();
+
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());
@@ -53,7 +54,7 @@ public class MainTestArrayStorage {
 
     static void printAll() {
         System.out.println("\nGet All");
-        for (Resume r : ARRAY_STORAGE.getAll()) {
+        for (Resume r : ARRAY_STORAGE.getAllSorted()) {
             System.out.println(r);
         }
     }
