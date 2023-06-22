@@ -4,7 +4,7 @@ import com.urise.webapp.model.Resume;
 
 import java.util.*;
 
-public class MapStorage extends AbstractStorage {
+public class MapUuidStorage extends AbstractStorage {
 
     private final Map<String, Resume> map = new HashMap<>();
 
@@ -31,11 +31,6 @@ public class MapStorage extends AbstractStorage {
     @Override
     protected void doDelete(String uuid, Object searchKey) {
         map.remove(uuid);
-    }
-
-    @Override
-    public List<Resume> getAllSorted() {
-        return new ArrayList<>(map.values());
     }
 
     @Override
