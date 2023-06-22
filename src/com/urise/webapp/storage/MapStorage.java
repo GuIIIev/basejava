@@ -33,11 +33,6 @@ public class MapStorage extends AbstractStorage {
         map.remove(uuid);
     }
 
-/*    @Override
-    public Resume[] getAll() {
-        return map.values().toArray(new Resume[0]);
-    }*/
-
     @Override
     public List<Resume> getAllSorted() {
         return new ArrayList<>(map.values());
@@ -61,7 +56,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object searchKey) {
-        return map.containsKey(searchKey);
+        return map.containsKey((String) searchKey);
     }
 
     @Override
