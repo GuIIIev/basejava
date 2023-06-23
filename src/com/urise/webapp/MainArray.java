@@ -40,7 +40,7 @@ public class MainArray {
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
-                case "update" :
+                case "update":
                     r = new Resume(param, params[2]);
                     ARRAY_STORAGE.update(r);
                     printAll();

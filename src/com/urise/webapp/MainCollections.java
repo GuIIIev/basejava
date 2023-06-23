@@ -3,8 +3,7 @@ package com.urise.webapp;
 import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.ListStorage;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class MainCollections {
     private static final String UUID_1 = "uuid1";
@@ -13,10 +12,10 @@ public class MainCollections {
     private static final String UUID_4 = "uuid4";
     private static final String UUID_NOT_EXIST = "UUIDNotExist";
 
-    private static final Resume RESUME_1 = new Resume(UUID_1);
-    private static final Resume RESUME_2 = new Resume(UUID_2);
-    private static final Resume RESUME_3 = new Resume(UUID_3);
-    private static final Resume RESUME_4 = new Resume(UUID_4);
+    private static final Resume RESUME_1 = new Resume(UUID_1, "Name1");
+    private static final Resume RESUME_2 = new Resume(UUID_2, "Name2");
+    private static final Resume RESUME_3 = new Resume(UUID_3, "Name3");
+    private static final Resume RESUME_4 = new Resume(UUID_4, "Name4");
 
     static final ListStorage list = new ListStorage();
 
@@ -27,7 +26,7 @@ public class MainCollections {
         collection.add(RESUME_3);
 
 
-        /*Iterator<Resume> iterator = collection.iterator();
+        Iterator<Resume> iterator = collection.iterator();
         while (iterator.hasNext()) {
             Resume r = iterator.next();
             System.out.println(r);
@@ -36,7 +35,7 @@ public class MainCollections {
             }
         }
         System.out.println(collection.toString());
-
+        System.out.println("Hashmap code");
         Map<String, Resume> map = new HashMap<>();
         map.put(UUID_1, RESUME_1);
         map.put(UUID_2, RESUME_2);
@@ -50,19 +49,19 @@ public class MainCollections {
         System.out.println();
         for (Map.Entry<String, Resume> entry : map.entrySet()) {
             System.out.println(entry.getValue());
-        }*/
+        }
 
-/*        list.save(RESUME_1);
+        list.save(RESUME_1);
         list.save(RESUME_2);
         list.save(RESUME_3);
         System.out.println(list.get(RESUME_2.getUuid()));
         //list.get(RESUME_4.getUuid());
-        System.out.println(Arrays.toString(list.getAll()));
+        System.out.println(Arrays.toString(list.getAllSorted().toArray()));
         System.out.println("Size " + list.size());
         list.delete(UUID_2);
-        System.out.println(Arrays.toString(list.getAll()));
-        for (Resume r : list.getAll()) {
-            System.out.println(r.getUuid());*/
+        System.out.println(Arrays.toString(list.getAllSorted().toArray()));
+        for (Resume r : list.getAllSorted().toArray(collection.toArray(new Resume[0]))) {
+            System.out.println(r.getUuid());
+        }
     }
-
 }
