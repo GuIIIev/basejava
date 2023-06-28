@@ -9,4 +9,16 @@ public class TestSingleton {
 
     private TestSingleton() {
     }
+
+    public static void main(String[] args) {
+        TestSingleton.getInstance().toString();
+        Singleton instance = Singleton.valueOf("INSTANCE");
+        System.out.println(instance.ordinal());
+
+
+    }
+
+    public enum Singleton {
+        INSTANCE
+    }
 }
