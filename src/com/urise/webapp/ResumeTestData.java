@@ -27,6 +27,5 @@ public class ResumeTestData {
                 System.out.println(r1.getSections(type).toString());
             }
         }
-
     }
 }
