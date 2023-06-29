@@ -27,4 +27,9 @@ public class ListSection extends Section {
     public int hashCode() {
         return Objects.hash(items);
     }
+
+    @Override
+    public String toString() {
+        return items.toString();
+    }
 }

@@ -27,4 +27,9 @@ public class OrganizationSection extends Section{
     public int hashCode() {
         return Objects.hash(organizations);
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

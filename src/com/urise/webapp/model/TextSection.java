@@ -22,4 +22,9 @@ public class TextSection extends Section {
     public int hashCode() {
         return Objects.hash(content);
     }
+
+    @Override
+    public String toString() {
+        return content;
+    }
 }

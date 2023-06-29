@@ -34,4 +34,9 @@ public class Organization {
     public int hashCode() {
         return Objects.hash(homePage, startDate, endDate, jobTitle, jobDescription);
     }
+
+    @Override
+    public String toString() {
+        return jobTitle + " " + jobDescription + " startDate" + startDate + " endDate" + endDate;
+    }
 }
