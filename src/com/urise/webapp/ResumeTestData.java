@@ -90,6 +90,37 @@ public class ResumeTestData {
                         LocalDate.of(2005, 1, 1),
                         "Инженер по аппаратному и программному тестированию",
                         "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM)."))));
+        r1.addSection(SectionType.EDUCATION, new OrganizationSection(Arrays.asList(
+                new Organization("Coursera",
+                        "coursera.org",
+                        LocalDate.of(2013, 3, 1),
+                        LocalDate.of(2013, 5, 1),
+                        "Functional Programming Principles in Scala' by Martin Odersky\n",
+                        ""),
+                new Organization("Luxoft)",
+                        "luxoft.ru",
+                        LocalDate.of(2011, 3, 1),
+                        LocalDate.of(2011, 4, 1),
+                        "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'",
+                        ""),
+                new Organization("Siemens AG",
+                        "siemens.com",
+                        LocalDate.of(2005, 1, 1),
+                        LocalDate.of(2005, 4, 1),
+                        "3 месяца обучения мобильным IN сетям (Берлин)",
+                        ""),
+                new Organization("Alcatel",
+                        "alcatel.ru",
+                        LocalDate.of(1997, 9, 1),
+                        LocalDate.of(1998, 3, 1),
+                        "6 месяцев обучения цифровым телефонным сетям (Москва)",
+                        ""),
+                new Organization("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики",
+                        "itmo.ru",
+                        LocalDate.of(1993, 9, 1),
+                        LocalDate.of(1996, 7, 1),
+                        "Аспирантура (программист С, С++)",
+                        ""))));
         System.out.println(r1);
         System.out.println("some contacts: \n");
         for (ContactType type : ContactType.values()) {
