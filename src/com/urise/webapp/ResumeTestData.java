@@ -121,16 +121,21 @@ public class ResumeTestData {
                         LocalDate.of(1996, 7, 1),
                         "Аспирантура (программист С, С++)",
                         ""))));
-        System.out.println(r1);
-        System.out.println("some contacts: \n");
+        System.out.println("Вывод данный по резюме: " + r1.getUuid());
+        System.out.println(r1.getFullName());
+
+        System.out.println("Some contacts: \n");
         for (ContactType type : ContactType.values()) {
-            System.out.println(r1.getContacts(type));
+            if (r1.getContacts(type) != null) {
+                System.out.println(type.getTitle() + ": " + r1.getContacts(type));
+            }
         }
-        System.out.println("some sections: \n");
+
+        System.out.println("\n\nSome sections: \n");
 
         for (SectionType type : SectionType.values()) {
             if (r1.getSections(type) != null) {
-                System.out.println(r1.getSections(type).toString());
+                System.out.println(type.getTitle() + ": \n" + r1.getSections(type).toString());
             }
         }
     }

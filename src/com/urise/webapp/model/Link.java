@@ -32,4 +32,10 @@ public class Link {
     public int hashCode() {
         return Objects.hash(name, url);
     }
+
+    @Override
+    public String toString() {
+        return "name - " + name + " \\ " +
+                "url - " + url;
+    }
 }

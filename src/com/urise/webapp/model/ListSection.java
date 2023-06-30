@@ -30,6 +30,10 @@ public class ListSection extends Section {
 
     @Override
     public String toString() {
-        return items.toString();
+        StringBuilder finalStr = new StringBuilder("\t\t");
+        for (String s : items) {
+            finalStr.append(s).append("\n\n\t\t");
+        }
+        return finalStr.toString();
     }
 }

@@ -37,6 +37,10 @@ public class Organization {
 
     @Override
     public String toString() {
-        return jobTitle + " " + jobDescription + " startDate" + startDate + " endDate" + endDate;
+        return homePage +
+                "\n\t\tstartDate - " + startDate +
+                "\n\t\tendDate - " + endDate +
+                "\n\t\t" + jobTitle +
+                "\n\t\t" + jobDescription;
     }
 }
