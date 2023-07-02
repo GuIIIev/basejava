@@ -3,15 +3,15 @@ package com.urise.webapp.model;
 import java.util.List;
 import java.util.Objects;
 
-public class OrganizationSection extends Section {
-    private final List<Organization> organizations;
+public class OrganisationSection extends Section {
+    private final List<Organisation> organizations;
 
-    public OrganizationSection(List<Organization> organizations) {
+    public OrganisationSection(List<Organisation> organizations) {
         Objects.requireNonNull(organizations, "organizations must not be null");
         this.organizations = organizations;
     }
 
-    public List<Organization> getOrganizations() {
+    public List<Organisation> getOrganizations() {
         return organizations;
     }
 
@@ -19,7 +19,7 @@ public class OrganizationSection extends Section {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrganizationSection that = (OrganizationSection) o;
+        OrganisationSection that = (OrganisationSection) o;
         return Objects.equals(organizations, that.organizations);
     }
 
@@ -31,7 +31,7 @@ public class OrganizationSection extends Section {
     @Override
     public String toString() {
         StringBuilder finalStr = new StringBuilder("\t\t");
-        for (Organization o : organizations) {
+        for (Organisation o : organizations) {
             finalStr.append(o.toString()).append("\n\t\t");
         }
         return finalStr.toString();
