@@ -30,9 +30,9 @@ public class OrganisationSection extends Section {
 
     @Override
     public String toString() {
-        StringBuilder finalStr = new StringBuilder("\t\t");
+        StringBuilder finalStr = new StringBuilder("");
         for (Organisation o : organizations) {
-            finalStr.append(o.toString()).append("\n\t\t");
+            finalStr.append(o.toString()).append("\n");
         }
         return finalStr.toString();
     }

@@ -28,6 +28,10 @@ public class Organisation {
 
     @Override
     public String toString() {
-        return homePage + " " + period;
+        StringBuilder periodStr = new StringBuilder();
+        for (Period p : period) {
+            periodStr.append(p.toString()).append("\n");
+        }
+        return homePage + "\n" + periodStr;
     }
 }

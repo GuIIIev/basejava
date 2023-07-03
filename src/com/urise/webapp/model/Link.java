@@ -35,7 +35,6 @@ public class Link {
 
     @Override
     public String toString() {
-        return "name - " + name + " \\ " +
-                "url - " + url;
+        return "\t\t" + name + " \n\t\t" + url;
     }
 }

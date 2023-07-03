@@ -31,11 +31,7 @@ public class Period {
 
     @Override
     public String toString() {
-        return "Period{" +
-                "startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", jobDescription='" + jobDescription + '\'' +
-                '}';
+        return "\t\t" + jobTitle + "\n\t\t" + jobDescription + "\n\t\t" +
+                startDate + " — " + endDate;
     }
 }
