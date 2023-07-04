@@ -6,17 +6,17 @@ import java.util.Objects;
 public class Period {
     private final LocalDate startDate;
     private final LocalDate endDate;
-    private final String jobTitle;
-    private final String jobDescription;
+    private final String title;
+    private final String description;
 
-    public Period(LocalDate startDate, LocalDate endDate, String jobTitle, String jobDescription) {
+    public Period(LocalDate startDate, LocalDate endDate, String title, String description) {
         Objects.requireNonNull(startDate, "startDate must not be null");
         Objects.requireNonNull(endDate, "endDate must not be null");
-        Objects.requireNonNull(jobTitle, "title must not be null");
+        Objects.requireNonNull(title, "title must not be null");
         this.startDate = startDate;
         this.endDate = endDate;
-        this.jobTitle = jobTitle;
-        this.jobDescription = jobDescription;
+        this.title = title;
+        this.description = description;
     }
 
     @Override
@@ -24,17 +24,17 @@ public class Period {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Period period = (Period) o;
-        return startDate.equals(period.startDate) && endDate.equals(period.endDate) && jobTitle.equals(period.jobTitle) && Objects.equals(jobDescription, period.jobDescription);
+        return startDate.equals(period.startDate) && endDate.equals(period.endDate) && title.equals(period.title) && Objects.equals(description, period.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(startDate, endDate, jobTitle, jobDescription);
+        return Objects.hash(startDate, endDate, title, description);
     }
 
     @Override
     public String toString() {
-        return "\t\t" + jobTitle + "\n\t\t" + jobDescription + "\n\t\t" +
+        return "\t\t" + title + "\n\t\t" + description + "\n\t\t" +
                 startDate + " — " + endDate;
     }
 }
