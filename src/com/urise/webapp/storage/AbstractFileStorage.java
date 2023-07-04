@@ -26,10 +26,10 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected List<Resume> doCopyAll() {
         File[] files = directory.listFiles();
-        if (files == null){
+        if (files == null) {
             throw new StorageException("File read error", null);
         }
-        List<Resume>list = new ArrayList<>(files.length);
+        List<Resume> list = new ArrayList<>(files.length);
         for (File file : files) {
             list.add(doGet("", file));
         }
