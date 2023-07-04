@@ -191,4 +191,61 @@ public class ResumeTestData {
             }
         }
     }
+
+    public static Resume createResume(String uuid, String fullName) {
+        Resume resume = new Resume(uuid, fullName);
+        resume.addContact(ContactType.PHONE, "some phone number");
+        resume.addContact(ContactType.SKYPE, "skype:skype");
+        resume.addContact(ContactType.MAIL, "mail.ru");
+        resume.addContact(ContactType.LINKEDIN, "Профиль LinkedIn");
+        resume.addContact(ContactType.GITHUB, "Профиль GitHub");
+        resume.addContact(ContactType.STACKOVERFLOW, "Профиль Stackoverflow");
+        resume.addContact(ContactType.HOME_PAGE, "Домашняя страница");
+        resume.addSection(SectionType.OBJECTIVE, new TextSection("над чем-то работаю"));
+        resume.addSection(SectionType.PERSONAL, new TextSection("умный и красивый"));
+        resume.addSection(SectionType.ACHIEVEMENT, new ListSection(Arrays.asList(
+                "Организация команды и успешная реализация Java проектов для сторонних заказчиков: приложения автопарк на стеке Spring Cloud/микросервисы, система мониторинга показателей спортсменов на Spring Boot, участие в проекте МЭШ на Play-2, многомодульный Spring Boot + Vaadin проект для комплексных DIY смет",
+                "С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. Более 3500 выпускников.")));
+        resume.addSection(SectionType.QUALIFICATIONS, new ListSection(Arrays.asList(
+                "JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2",
+                "Version control: Subversion, Git, Mercury, ClearCase, Perforce")));
+        resume.addSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
+                new Organisation(
+                        "Java Online Projects",
+                        "javaops.ru",
+                        List.of(
+                                new Period(LocalDate.of(2013, 10, 1),
+                                        LocalDate.now(),
+                                        "Автор проекта.",
+                                        "Создание, организация и проведение Java онлайн проектов и стажировок.")
+                        )),
+                new Organisation(
+                        "Wrike",
+                        "wrike.com",
+                        List.of(
+                                new Period(LocalDate.of(2014, 10, 1),
+                                        LocalDate.of(2016, 1, 1),
+                                        "Старший разработчик (backend)",
+                                        "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.")
+                        )))));
+        resume.addSection(SectionType.EDUCATION, new OrganisationSection(Arrays.asList(
+                new Organisation(
+                        "Coursera",
+                        "coursera.org",
+                        List.of(new Period(LocalDate.of(2013, 3, 1),
+                                LocalDate.of(2013, 5, 1),
+                                "Functional Programming Principles in Scala' by Martin Odersky",
+                                "")
+                        )),
+                new Organisation(
+                        "Luxoft",
+                        "luxoft.ru",
+                        List.of(
+                                new Period(LocalDate.of(2011, 3, 1),
+                                        LocalDate.of(2011, 4, 1),
+                                        "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'",
+                                        "")
+                        )))));
+        return resume;
+    }
 }
