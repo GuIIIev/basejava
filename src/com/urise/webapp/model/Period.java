@@ -10,6 +10,9 @@ public class Period {
     private final String jobDescription;
 
     public Period(LocalDate startDate, LocalDate endDate, String jobTitle, String jobDescription) {
+        Objects.requireNonNull(startDate, "startDate must not be null");
+        Objects.requireNonNull(endDate, "endDate must not be null");
+        Objects.requireNonNull(jobTitle, "title must not be null");
         this.startDate = startDate;
         this.endDate = endDate;
         this.jobTitle = jobTitle;

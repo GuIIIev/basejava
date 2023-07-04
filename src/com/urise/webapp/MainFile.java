@@ -41,9 +41,11 @@ public class MainFile {
         if (list != null) {
             for (File file : list) {
                 if (file.isDirectory()) {
+                    System.out.println("Directory: " + file.getName());
                     printAll(file);
+                } else if (file.isFile()) {
+                    System.out.println("File: " + file.getName());
                 }
-                System.out.println(file.getName());
             }
         }
     }
