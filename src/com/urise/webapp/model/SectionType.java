@@ -1,12 +1,13 @@
 package com.urise.webapp.model;
 
 public enum SectionType {
-    PERSONAL("Персональные качества"),
-    OBJECTIVE("Позиция"),
-    ACHIEVEMENT("Достижения"),
-    QUALIFICATIONS("Квалификация"),
-    EXPERIENCE("Опыт работы"),
-    EDUCATION("Образование");
+    PERSONAL("Р›РёС‡РЅС‹Рµ РєР°С‡РµСЃС‚РІР°"),
+    OBJECTIVE("РџРѕР·РёС†РёСЏ"),
+    ACHIEVEMENT("Р”РѕСЃС‚РёР¶РµРЅРёСЏ"),
+    QUALIFICATIONS("РљРІР°Р»РёС„РёРєР°С†РёСЏ"),
+    EXPERIENCE("РћРїС‹С‚ СЂР°Р±РѕС‚С‹"),
+    EDUCATION("РћР±СЂР°Р·РѕРІР°РЅРёРµ");
+
 
     private final String title;
 
