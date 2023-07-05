@@ -31,12 +31,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
     }
 
     @Override
-    protected Resume doGet(String uuid, Integer searchKey) {
+    protected Resume doGet(Integer searchKey) {
         return storage[(Integer) searchKey];
     }
 
     @Override
-    public final void doDelete(String uuid, Integer searchKey) {
+    public final void doDelete(Integer searchKey) {
         extractResume((Integer) searchKey);
     }
 

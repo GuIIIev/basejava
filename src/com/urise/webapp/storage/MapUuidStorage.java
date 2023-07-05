@@ -24,13 +24,13 @@ public class MapUuidStorage extends AbstractStorage<String> {
     }
 
     @Override
-    protected Resume doGet(String uuid, String searchKey) {
-        return map.get(uuid);
+    protected Resume doGet(String searchKey) {
+        return map.get(searchKey);
     }
 
     @Override
-    protected void doDelete(String uuid, String searchKey) {
-        map.remove(uuid);
+    protected void doDelete(String searchKey) {
+        map.remove(searchKey);
     }
 
     @Override
