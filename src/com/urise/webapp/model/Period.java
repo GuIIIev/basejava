@@ -1,9 +1,10 @@
 package com.urise.webapp.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Period {
+public class Period implements Serializable {
     private final LocalDate startDate;
     private final LocalDate endDate;
     private final String title;
@@ -35,6 +36,6 @@ public class Period {
     @Override
     public String toString() {
         return "\t\t" + title + "\n\t\t" + description + "\n\t\t" +
-                startDate + " — " + endDate;
+                startDate + " ? " + endDate;
     }
 }

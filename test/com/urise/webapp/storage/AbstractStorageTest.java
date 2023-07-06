@@ -8,11 +8,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 
 public abstract class AbstractStorageTest {
+    protected static final File STORAGE_DIR = new File("D:\\JavaPractice\\basejava\\storage");
     final Storage storage;
 
     private static final String UUID_1 = "uuid1";
