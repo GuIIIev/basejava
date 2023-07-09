@@ -88,7 +88,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
                 doDelete(file);
             }
         } else {
-            throw new StorageException("File clear error", directory.getName());
+            throw new StorageException("File clear error", null);
         }
     }
 

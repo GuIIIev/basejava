@@ -32,19 +32,19 @@ public class MainFile {
         }
 
         System.out.println("\n\nSome recursion: \n\n");
-        printAll(dir);
+        printDir(dir);
     }
 
-    public static void printAll(File dir) {
+    public static void printDir(File dir) {
 
         File[] list = dir.listFiles();
         if (list != null) {
             for (File file : list) {
                 if (file.isDirectory()) {
                     System.out.println("Directory: " + file.getName());
-                    printAll(file);
+                    printDir(file);
                 } else if (file.isFile()) {
-                    System.out.println("File: " + file.getName());
+                    System.out.println("\tFile: " + file.getName());
                 }
             }
         }
