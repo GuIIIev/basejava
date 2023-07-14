@@ -22,6 +22,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         this.directory = directory;
     }
 
+
     @Override
     protected List<Resume> doCopyAll() {
         File[] files = directory.listFiles();
