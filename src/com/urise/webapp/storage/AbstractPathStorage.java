@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     private final Path directory;
@@ -23,33 +26,16 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     protected List<Resume> doCopyAll() {
-
-/*        try {
-
-            //List<Resume> list = Files.list(directory).forEach(this::new BufferedOutputStream(Files.newOutputStream(path)));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            Files.list(directory).forEach(new Consumer<Path>() {
+        try (Stream<Path> pathStream = Files.list(directory)) {
+            return pathStream.map(new Function<Path, Resume>() {
                 @Override
-                public void accept(Path path) {
-
+                public Resume apply(Path path) {
+                    return AbstractPathStorage.this.doGet(path);
                 }
-            });
-            return new ArrayList<>();
+            }).toList();
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
-        /*if (files == null) {
-            throw new StorageException("Path read error", null);
+            throw new StorageException("Directory read error", e);
         }
-        List<Resume> list = new ArrayList<>(files.length);
-        for (Path file : files) {
-            list.add(doGet(file));
-        }
-        return list;*/
-        return null;
     }
 
     @Override
@@ -95,16 +81,21 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         try {
             Files.delete(file);
         } catch (IOException e) {
-            throw new StorageException("Path delete error", null);
+            throw new StorageException("Path delete error", e);
         }
     }
 
     @Override
     public void clear() {
         try {
-            Files.list(directory).forEach(this::doDelete);
+            Files.list(directory).forEach(new Consumer<Path>() {
+                @Override
+                public void accept(Path file) {
+                    AbstractPathStorage.this.doDelete(file);
+                }
+            });
         } catch (IOException e) {
-            throw new StorageException("Path delete error", null);
+            throw new StorageException("Path delete error", e);
         }
     }
 
