@@ -1,11 +1,15 @@
 package com.urise.webapp;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import com.urise.webapp.excaption.StorageException;
+import com.urise.webapp.model.Resume;
+
+import java.io.*;
 
 
 public class MainFile {
+    public MainFile() throws IOException {
+    }
+
     public static void main(String[] args) {
         String filePath = ".\\.gitignore";
         File file = new File(".\\.gitignore");
@@ -49,4 +53,15 @@ public class MainFile {
             }
         }
     }
+
+    public static Resume doRead(InputStream is) throws IOException {
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            try {
+                return (Resume) ois.readObject();
+            } catch (ClassNotFoundException e) {
+                throw new StorageException("Error read resume", null, e);
+            }
+        }
+    }
+
 }
