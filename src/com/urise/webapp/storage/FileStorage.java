@@ -2,11 +2,13 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.excaption.StorageException;
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.strategy.Strategy;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class FileStorage extends AbstractStorage<File> {
     private final File directory;
@@ -24,18 +26,9 @@ public class FileStorage extends AbstractStorage<File> {
         this.strategy = strategy;
     }
 
-
     @Override
     protected List<Resume> doCopyAll() {
-        File[] files = directory.listFiles();
-        if (files == null) {
-            throw new StorageException("File read error");
-        }
-        List<Resume> list = new ArrayList<>(files.length);
-        for (File file : files) {
-            list.add(doGet(file));
-        }
-        return list;
+        return Arrays.stream(getListFiles()).map(this::doGet).collect(Collectors.toList());
     }
 
     @Override
@@ -85,22 +78,20 @@ public class FileStorage extends AbstractStorage<File> {
 
     @Override
     public void clear() {
-        File[] files = directory.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                doDelete(file);
-            }
-        } else {
-            throw new StorageException("File clear error");
-        }
+        Arrays.stream(getListFiles()).forEach(this::doDelete);
     }
 
     @Override
     public int size() {
-        String[] list = directory.list();
-        if (list == null) {
+        return getListFiles().length;
+    }
+
+    private File[] getListFiles() {
+        File[] files = directory.listFiles();
+        if (files == null) {
             throw new StorageException("Directory read error");
         }
-        return list.length;
+        return files;
     }
+
 }

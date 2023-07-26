@@ -2,15 +2,17 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.excaption.StorageException;
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.strategy.Strategy;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PathStorage extends AbstractStorage<Path> {
@@ -28,28 +30,8 @@ public class PathStorage extends AbstractStorage<Path> {
     }
 
     @Override
-/*    protected List<Resume> doCopyAll() {
-        List<Resume> list = new ArrayList<>();
-        try (Stream<Path> pathStream = Files.list(directory)) {
-            pathStream.forEach((Path p) -> {
-                list.add(AbstractPathStorage.this.doGet(p));
-            });
-        } catch (IOException e) {
-            throw new StorageException("Directory read error", e);
-        }
-        return list;
-    }*/
-
     protected List<Resume> doCopyAll() {
-        List<Resume> list = new ArrayList<>();
-        try (Stream<Path> pathStream = Files.walk(directory)) {
-            pathStream.forEach((Path p) -> {
-                list.add(PathStorage.this.doGet(p));
-            });
-        } catch (IOException e) {
-            throw new StorageException("Directory read error", e);
-        }
-        return list;
+        return getListFiles().map(this::doGet).collect(Collectors.toList());
     }
 
     @Override
@@ -101,22 +83,17 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     public void clear() {
-        try (Stream<Path> pathStream = Files.list(directory)) {
-            pathStream.forEach(new Consumer<Path>() {
-                @Override
-                public void accept(Path file) {
-                    PathStorage.this.doDelete(file);
-                }
-            });
-        } catch (IOException e) {
-            throw new StorageException("Path delete error", e);
-        }
+        getListFiles().forEach(this::doDelete);
     }
 
     @Override
     public int size() {
-        try (Stream<Path> pathStream = Files.list(directory)) {
-            return (int) pathStream.count();
+        return (int) getListFiles().count();
+    }
+
+    private Stream<Path> getListFiles() {
+        try {
+            return Files.list(directory);
         } catch (IOException e) {
             throw new StorageException("Directory read error", e);
         }
