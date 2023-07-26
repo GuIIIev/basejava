@@ -1,9 +1,8 @@
 package com.urise.webapp;
 
-import com.urise.webapp.excaption.StorageException;
-import com.urise.webapp.model.Resume;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 
 public class MainFile {
@@ -20,7 +19,7 @@ public class MainFile {
             throw new RuntimeException("Error", e);
         }
 
-        File dir = new File(".\\src\\com\\urise\\webapp");
+        File dir = new File("D:\\JavaPractice\\basejava\\src");
         System.out.println(dir.isDirectory());
         String[] list = dir.list();
         if (list != null) {
@@ -36,32 +35,21 @@ public class MainFile {
         }
 
         System.out.println("\n\nSome recursion: \n\n");
-        printDir(dir);
+        printDir(dir, "");
     }
 
-    public static void printDir(File dir) {
-
+    public static void printDir(File dir, String level) {
         File[] list = dir.listFiles();
+
         if (list != null) {
             for (File file : list) {
                 if (file.isDirectory()) {
-                    System.out.println("Directory: " + file.getName());
-                    printDir(file);
+                    System.out.println(level + "Directory: " + file.getName());
+                    printDir(file, level + " ");
                 } else if (file.isFile()) {
-                    System.out.println("\tFile: " + file.getName());
+                    System.out.println(level + "File: " + file.getName());
                 }
             }
         }
     }
-
-    public static Resume doRead(InputStream is) throws IOException {
-        try (ObjectInputStream ois = new ObjectInputStream(is)) {
-            try {
-                return (Resume) ois.readObject();
-            } catch (ClassNotFoundException e) {
-                throw new StorageException("Error read resume", null, e);
-            }
-        }
-    }
-
 }
