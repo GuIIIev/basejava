@@ -6,9 +6,6 @@ import java.io.IOException;
 
 
 public class MainFile {
-    public MainFile() throws IOException {
-    }
-
     public static void main(String[] args) {
         String filePath = ".\\.gitignore";
         File file = new File(".\\.gitignore");
@@ -38,6 +35,7 @@ public class MainFile {
         printDir(dir, "");
     }
 
+
     public static void printDir(File dir, String level) {
         File[] list = dir.listFiles();
 
@@ -53,3 +51,4 @@ public class MainFile {
         }
     }
 }
+
