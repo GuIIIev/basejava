@@ -28,7 +28,7 @@ public class FileStorage extends AbstractStorage<File> {
 
     @Override
     protected List<Resume> doCopyAll() {
-        return Arrays.stream(getListFiles()).map(this::doGet).collect(Collectors.toList());
+        return Arrays.stream(getFilesList()).map(this::doGet).collect(Collectors.toList());
     }
 
     @Override
@@ -78,15 +78,15 @@ public class FileStorage extends AbstractStorage<File> {
 
     @Override
     public void clear() {
-        Arrays.stream(getListFiles()).forEach(this::doDelete);
+        Arrays.stream(getFilesList()).forEach(this::doDelete);
     }
 
     @Override
     public int size() {
-        return getListFiles().length;
+        return getFilesList().length;
     }
 
-    private File[] getListFiles() {
+    private File[] getFilesList() {
         File[] files = directory.listFiles();
         if (files == null) {
             throw new StorageException("Directory read error");

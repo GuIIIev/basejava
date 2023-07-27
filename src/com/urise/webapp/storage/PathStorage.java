@@ -31,7 +31,7 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     protected List<Resume> doCopyAll() {
-        return getListFiles().map(this::doGet).collect(Collectors.toList());
+        return getFilesList().map(this::doGet).collect(Collectors.toList());
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PathStorage extends AbstractStorage<Path> {
         try {
             Files.createFile(path);
         } catch (IOException e) {
-            throw new StorageException("couldn't create path", path.toString(), e);
+            throw new StorageException("couldn't create path " + path, getFileName(path), e);
         }
         doUpdate(r, path);
     }
@@ -68,7 +68,7 @@ public class PathStorage extends AbstractStorage<Path> {
         try {
             return strategy.doRead(new BufferedInputStream(Files.newInputStream(path)));
         } catch (IOException e) {
-            throw new StorageException("Path read error", path.toString(), e);
+            throw new StorageException("Path read error", getFileName(path), e);
         }
     }
 
@@ -83,15 +83,19 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     public void clear() {
-        getListFiles().forEach(this::doDelete);
+        getFilesList().forEach(this::doDelete);
     }
 
     @Override
     public int size() {
-        return (int) getListFiles().count();
+        return (int) getFilesList().count();
     }
 
-    private Stream<Path> getListFiles() {
+    private String getFileName(Path path) {
+        return path.getFileName().toString();
+    }
+
+    private Stream<Path> getFilesList() {
         try {
             return Files.list(directory);
         } catch (IOException e) {
