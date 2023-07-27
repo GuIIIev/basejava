@@ -5,7 +5,7 @@ import com.urise.webapp.model.Resume;
 
 import java.io.*;
 
-public class streamStrategy implements Strategy {
+public class StreamStrategy implements Strategy {
     @Override
     public void doWrite(Resume r, OutputStream os) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(os)) {

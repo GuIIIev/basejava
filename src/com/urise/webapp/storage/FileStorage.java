@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class FileStorage extends AbstractStorage<File> {
     private final File directory;
-    private Strategy strategy;
+    private final Strategy strategy;
 
     protected FileStorage(File directory, Strategy strategy) {
         Objects.requireNonNull(directory, "directory must not be null");

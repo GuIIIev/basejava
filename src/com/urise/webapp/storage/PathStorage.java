@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 public class PathStorage extends AbstractStorage<Path> {
     private final Path directory;
-    private Strategy strategy;
+    private final Strategy strategy;
 
     protected PathStorage(String dir, Strategy strategy) {
         Objects.requireNonNull(dir, "directory must not be null");
