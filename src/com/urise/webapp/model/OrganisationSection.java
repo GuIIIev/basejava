@@ -6,7 +6,10 @@ import java.util.Objects;
 public class OrganisationSection extends Section {
     private static final long serialVersionUID = 1L;
 
-    private final List<Organisation> organizations;
+    private List<Organisation> organizations;
+
+    public OrganisationSection() {
+    }
 
     public OrganisationSection(List<Organisation> organizations) {
         Objects.requireNonNull(organizations, "organizations must not be null");
@@ -32,7 +35,7 @@ public class OrganisationSection extends Section {
 
     @Override
     public String toString() {
-        StringBuilder finalStr = new StringBuilder("");
+        StringBuilder finalStr = new StringBuilder();
         for (Organisation o : organizations) {
             finalStr.append(o.toString()).append("\n");
         }

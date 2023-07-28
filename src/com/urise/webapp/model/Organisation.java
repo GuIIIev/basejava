@@ -8,8 +8,11 @@ import java.util.Objects;
 public class Organisation implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private final Link homePage;
+    private Link homePage;
     private List<Period> period = new ArrayList<>();
+
+    public Organisation() {
+    }
 
     public Organisation(String name, String url, List<Period> period) {
         this.homePage = new Link(name, url);
