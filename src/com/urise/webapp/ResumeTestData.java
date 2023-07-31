@@ -201,7 +201,7 @@ public class ResumeTestData {
         resume.addContact(ContactType.GITHUB, "Профиль GitHub");
         resume.addContact(ContactType.STACKOVERFLOW, "Профиль Stackoverflow");
         resume.addContact(ContactType.HOME_PAGE, "Домашняя страница");
-        resume.addSection(SectionType.OBJECTIVE, new TextSection("над чем-то работаю"));
+   /*     resume.addSection(SectionType.OBJECTIVE, new TextSection("над чем-то работаю"));
         resume.addSection(SectionType.PERSONAL, new TextSection("умный и красивый"));
         resume.addSection(SectionType.ACHIEVEMENT, new ListSection(Arrays.asList(
                 "Организация команды и успешная реализация Java проектов для сторонних заказчиков: приложения автопарк на стеке Spring Cloud/микросервисы, система мониторинга показателей спортсменов на Spring Boot, участие в проекте МЭШ на Play-2, многомодульный Spring Boot + Vaadin проект для комплексных DIY смет",
@@ -245,7 +245,7 @@ public class ResumeTestData {
                                         LocalDate.of(2011, 4, 1),
                                         "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'",
                                         "")
-                        )))));
+                        )))));*/
         return resume;
     }
 }
