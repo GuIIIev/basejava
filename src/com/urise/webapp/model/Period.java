@@ -57,4 +57,20 @@ public class Period implements Serializable {
         return "\t\t" + title + "\n\t\t" + description + "\n\t\t" +
                 startDate + " ? " + endDate;
     }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -44,4 +44,12 @@ public class Organisation implements Serializable {
         }
         return homePage + "\n" + periodStr;
     }
+
+    public Link getHomePage() {
+        return homePage;
+    }
+
+    public List<Period> getPeriod() {
+        return period;
+    }
 }

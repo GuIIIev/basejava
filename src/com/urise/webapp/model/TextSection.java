@@ -32,4 +32,8 @@ public class TextSection extends Section {
     public String toString() {
         return content;
     }
+
+    public String getContent() {
+        return content;
+    }
 }
