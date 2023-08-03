@@ -42,7 +42,7 @@ public class Period implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Period)) return false;
         Period period = (Period) o;
         return startDate.equals(period.startDate) && endDate.equals(period.endDate) && title.equals(period.title) && Objects.equals(description, period.description);
     }

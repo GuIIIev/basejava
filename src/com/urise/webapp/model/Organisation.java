@@ -18,6 +18,11 @@ public class Organisation implements Serializable {
         period = new ArrayList<>();
     }
 
+    public Organisation(Link homePage, List<Period> period) {
+        this.homePage = homePage;
+        this.period = period;
+    }
+
     public Organisation(String name, String url, List<Period> period) {
         this.homePage = new Link(name, url);
         this.period = period;

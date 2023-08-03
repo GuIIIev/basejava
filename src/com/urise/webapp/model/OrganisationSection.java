@@ -23,9 +23,9 @@ public class OrganisationSection extends Section {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof OrganisationSection)) return false;
         OrganisationSection that = (OrganisationSection) o;
-        return Objects.equals(organizations, that.organizations);
+        return organizations.equals(that.organizations);
     }
 
     @Override
