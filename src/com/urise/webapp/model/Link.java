@@ -29,7 +29,6 @@ public class Link implements Serializable {
         return url;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
