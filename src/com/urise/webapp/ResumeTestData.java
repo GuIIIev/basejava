@@ -215,7 +215,7 @@ public class ResumeTestData {
                         "javaops.ru",
                         List.of(
                                 new Period(LocalDate.of(2013, 10, 1),
-                                        LocalDate.now(),
+                                        LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), 1),
                                         "Автор проекта.",
                                         "Создание, организация и проведение Java онлайн проектов и стажировок.")
                         )),
