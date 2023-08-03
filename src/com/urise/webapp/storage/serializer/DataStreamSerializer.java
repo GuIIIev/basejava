@@ -49,12 +49,8 @@ public class DataStreamSerializer implements StreamSerializer {
                             List<Period> periods = organisation.getPeriod();
                             dos.writeInt(periods.size());
                             for (Period period : periods) {
-                                LocalDate localDate = period.getStartDate();
-                                dos.writeInt(localDate.getYear());
-                                dos.writeInt(localDate.getMonth().getValue());
-                                localDate = period.getEndDate();
-                                dos.writeInt(localDate.getYear());
-                                dos.writeInt(localDate.getMonth().getValue());
+                                localDateWriter(dos, period.getStartDate());
+                                localDateWriter(dos, period.getEndDate());
                                 dos.writeUTF(period.getTitle());
                                 dos.writeUTF(period.getDescription());
                             }
@@ -102,8 +98,8 @@ public class DataStreamSerializer implements StreamSerializer {
                             List<Period> periods = new ArrayList<>();
                             for (int k = 0; k < periodSize; k++) {
                                 periods.add(new Period(
-                                        LocalDate.of(dis.readInt(), dis.readInt(), 1),
-                                        LocalDate.of(dis.readInt(), dis.readInt(), 1),
+                                        localDateReader(dis),
+                                        localDateReader(dis),
                                         dis.readUTF(),
                                         dis.readUTF()));
                             }
@@ -115,5 +111,15 @@ public class DataStreamSerializer implements StreamSerializer {
             }
             return resume;
         }
+    }
+
+    private void localDateWriter(DataOutputStream dos, LocalDate localDateStart) throws IOException {
+        dos.writeInt(localDateStart.getYear());
+        dos.writeInt(localDateStart.getMonth().getValue());
+        dos.writeInt(localDateStart.getDayOfMonth());
+    }
+
+    private LocalDate localDateReader(DataInputStream dis) throws IOException {
+        return LocalDate.of(dis.readInt(), dis.readInt(), dis.readInt());
     }
 }
