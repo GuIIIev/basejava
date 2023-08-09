@@ -7,7 +7,6 @@ public class MainConcurrency {
     public static final int Threads_n = 10000;
     public static final int THREADS_NUMBER = Threads_n;
     private static int counter;
-    private static final Object LOCK = new Object();
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -23,7 +22,6 @@ public class MainConcurrency {
         new Thread(() -> System.out.println(Thread.currentThread().getName() + ", " + Thread.currentThread().getState())).start();
 
         System.out.println(thread0.getState());
-
 
 
         final MainConcurrency mainConcurrency = new MainConcurrency();
