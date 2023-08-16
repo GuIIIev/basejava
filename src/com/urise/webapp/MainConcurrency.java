@@ -7,8 +7,6 @@ public class MainConcurrency {
     public static final int THREADS_NUMBER = 10000;
     private static int counter;
     private static final Object LOCK = new Object();
-    public static final String Lock1 = "Lock1";
-    public static final String Lock2 = "Lock2";
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(Thread.currentThread().getName());
@@ -48,32 +46,11 @@ public class MainConcurrency {
         });
         System.out.println(MainConcurrency.counter);
         //DeadLock practice
-        deadLock(Lock1, Lock2);
-        deadLock(Lock2, Lock1);
     }
 
     private synchronized void inc() {
 //        synchronized (LOCK) {
         counter++;
 //        }
-    }
-
-    private static void deadLock(Object lock1, Object lock2) {
-        new Thread(() -> {
-            synchronized (lock1) {
-                System.out.println("Holding " + lock1);
-
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                System.out.println("Waiting for " + lock2);
-
-                synchronized (lock2) {
-                    System.out.println("Holding lock " + lock1 + " " + lock2);
-                }
-            }
-        }).start();
     }
 }
