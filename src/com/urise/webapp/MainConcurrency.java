@@ -7,8 +7,8 @@ public class MainConcurrency {
     public static final int THREADS_NUMBER = 10000;
     private static int counter;
     private static final Object LOCK = new Object();
-    public static final Object Lock1 = new Object();
-    public static final Object Lock2 = new Object();
+    public static final String Lock1 = "Lock1";
+    public static final String Lock2 = "Lock2";
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(Thread.currentThread().getName());
@@ -48,10 +48,8 @@ public class MainConcurrency {
         });
         System.out.println(MainConcurrency.counter);
         //DeadLock practice
-        ThreadDemo1 threadDemo1 = new ThreadDemo1();
-        ThreadDemo2 threadDemo2 = new ThreadDemo2();
-        threadDemo1.start();
-        threadDemo2.start();
+        deadLock(Lock1, Lock2);
+        deadLock(Lock2, Lock1);
     }
 
     private synchronized void inc() {
@@ -60,41 +58,22 @@ public class MainConcurrency {
 //        }
     }
 
-    private static class ThreadDemo1 extends Thread {
-        public void run() {
-            synchronized (Lock1) {
-                System.out.println("Thread 1: Holding lock 1...");
+    private static void deadLock(Object lock1, Object lock2) {
+        new Thread(() -> {
+            synchronized (lock1) {
+                System.out.println("Holding " + lock1);
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("Thread 1: Waiting for lock 2...");
+                System.out.println("Waiting for " + lock2);
 
-                synchronized (Lock2) {
-                    System.out.println("Thread 1: Holding lock 1 & 2...");
+                synchronized (lock2) {
+                    System.out.println("Holding lock " + lock1 + " " + lock2);
                 }
             }
-        }
-    }
-
-    private static class ThreadDemo2 extends Thread {
-        public void run() {
-            synchronized (Lock2) {
-                System.out.println("Thread 2: Holding lock 2...");
-
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                System.out.println("Thread 2: Waiting for lock 1...");
-
-                synchronized (Lock1) {
-                    System.out.println("Thread 2: Holding lock 1 & 2...");
-                }
-            }
-        }
+        }).start();
     }
 }
