@@ -35,7 +35,7 @@ public class MainConcurrency {
         final MainConcurrency mainConcurrency = new MainConcurrency();
         CountDownLatch latch = new CountDownLatch(THREADS_NUMBER);
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-//        CompletionService completionService = new ExecutorCompletionService(executorService);
+        CompletionService completionService = new ExecutorCompletionService(executorService);
 //
 //        ExecutorService executorService = Executors.newCachedThreadPool();
 
