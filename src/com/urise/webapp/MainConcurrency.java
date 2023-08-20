@@ -10,7 +10,7 @@ public class MainConcurrency {
     private static int counter;
     private final AtomicInteger atomicCounter = new AtomicInteger();
     private static final Object LOCK = new Object();
-    private static final ThreadLocal<SimpleDateFormat> threadLocal = new ThreadLocal<>(){
+    private static final ThreadLocal<SimpleDateFormat> threadLocal = new ThreadLocal<>() {
         @Override
         protected SimpleDateFormat initialValue() {
             return new SimpleDateFormat();
