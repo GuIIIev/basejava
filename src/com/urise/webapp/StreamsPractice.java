@@ -3,7 +3,10 @@ package com.urise.webapp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+
+import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.toList;
 
 public class StreamsPractice {
 
@@ -14,7 +17,7 @@ public class StreamsPractice {
         System.out.println(minValue(values));
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 3, 3));
         System.out.println(oddOrEven(list));
-        list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
         System.out.println(oddOrEven(list));
     }
 
@@ -26,10 +29,8 @@ public class StreamsPractice {
     }
 
     static List<Integer> oddOrEven(List<Integer> integers) {
-        int mod = integers.stream().reduce(Integer::sum).get() % 2;
-        return integers
-                .stream()
-                .filter(n -> n % 2 != mod)
-                .collect(Collectors.toList());
+        Map<Boolean, List<Integer>> map = integers.stream()
+                .collect(partitioningBy(x -> x % 2 == 0, toList()));
+        return map.get(map.get(false).size() % 2 != 0);
     }
 }
