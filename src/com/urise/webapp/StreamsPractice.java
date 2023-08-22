@@ -25,7 +25,7 @@ public class StreamsPractice {
         return Arrays.stream(values)
                 .distinct()
                 .sorted()
-                .reduce(0, (a, b) -> (int) Math.pow(10, (int) (Math.log10(b) + 1)) * a + b);
+                .reduce(0, (a, b) -> a * 10 + b);
     }
 
     static List<Integer> oddOrEven(List<Integer> integers) {
