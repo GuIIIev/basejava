@@ -27,7 +27,12 @@ public class SqlStorage implements Storage {
 
     @Override
     public void update(Resume r) {
-
+        try (Connection conn = connectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement("")) {
+            ps.execute();
+        } catch (SQLException e) {
+            throw new StorageException(e);
+        }
     }
 
     @Override
