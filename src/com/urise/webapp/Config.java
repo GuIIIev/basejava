@@ -12,9 +12,8 @@ import java.util.Properties;
 public class Config {
     public static final Config INSTANCE = new Config();
     protected static final File PROPS = new File(".\\storage\\resumes.properties");
-    private final Properties props = new Properties();
-    private File storageDir;
-    private Storage storage;
+    private final File storageDir;
+    private final Storage storage;
 
     public static Config get() {
         return INSTANCE;
@@ -22,6 +21,7 @@ public class Config {
 
     private Config() {
         try (InputStream is = new FileInputStream("./config/resumes.properties")) {
+            Properties props = new Properties();
             props.load(is);
             storageDir = new File(props.getProperty("storage.dir"));
             storage = new SqlStorage(props.getProperty("db.url"), props.getProperty("db.user"), props.getProperty("db.password"));
