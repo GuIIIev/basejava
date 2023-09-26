@@ -142,4 +142,5 @@ public class SqlStorage implements Storage {
             r.addContact(ContactType.valueOf(rs.getString("type")), value);
         }
     }
+
 }
