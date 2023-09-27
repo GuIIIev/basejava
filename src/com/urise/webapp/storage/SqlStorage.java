@@ -6,10 +6,7 @@ import com.urise.webapp.model.Resume;
 import com.urise.webapp.sql.SqlHelper;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SqlStorage implements Storage {
     public final SqlHelper sqlHelper;
@@ -42,15 +39,14 @@ public class SqlStorage implements Storage {
     @Override
     public void save(Resume r) {
         sqlHelper.transactionalExecute(conn -> {
-                    try (PreparedStatement ps = conn.prepareStatement("INSERT INTO resume (uuid, full_name) VALUES (?,?)")) {
-                        ps.setString(1, r.getUuid());
-                        ps.setString(2, r.getFullName());
-                        ps.execute();
-                    }
-                    insertContact(r, conn);
-                    return null;
-                }
-        );
+            try (PreparedStatement ps = conn.prepareStatement("INSERT INTO resume (uuid, full_name) VALUES (?,?)")) {
+                ps.setString(1, r.getUuid());
+                ps.setString(2, r.getFullName());
+                ps.execute();
+            }
+            insertContact(r, conn);
+            return null;
+        });
     }
 
     @Override
@@ -117,11 +113,10 @@ public class SqlStorage implements Storage {
 
     private void deleteContacts(Resume r, Connection conn) throws SQLException {
         sqlHelper.execute("DELETE FROM contact WHERE resume_uuid=?", ps -> {
-                    ps.setString(1, r.getUuid());
-                    ps.execute();
-                    return null;
-                }
-        );
+            ps.setString(1, r.getUuid());
+            ps.execute();
+            return null;
+        });
     }
 
     private void insertContact(Resume r, Connection conn) throws SQLException {
