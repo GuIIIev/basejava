@@ -209,7 +209,7 @@ public class ResumeTestData {
         resume.addSection(SectionType.QUALIFICATIONS, new ListSection(Arrays.asList(
                 "JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2",
                 "Version control: Subversion, Git, Mercury, ClearCase, Perforce")));
-/*        resume.addSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
+        resume.addSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
                 new Organisation(
                         "Java Online Projects",
                         "javaops.ru",
@@ -245,7 +245,7 @@ public class ResumeTestData {
                                         LocalDate.of(2011, 4, 1),
                                         "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'",
                                         "")
-                        )))));*/
+                        )))));
         return resume;
     }
 }
