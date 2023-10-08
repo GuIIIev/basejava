@@ -60,7 +60,7 @@
                     </tr>
                 </c:when>
                 <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
-                    <c:forEach var="org" items="<%=((OrganisationSection) section).getOrganizations()%>">
+                    <c:forEach var="org" items="<%=((OrganisationSection) section).getOrganisations()%>">
                         <tr>
                             <td colspan="2">
                                 <c:choose>

@@ -70,9 +70,9 @@ public abstract class AbstractStorageTest {
     @Test
     public void update() throws Exception {
         Resume r = ResumeTestData.createResume(UUID_2, "New Name");
-        r.addContact(ContactType.MAIL, "mail@google.com");
-        r.addContact(ContactType.SKYPE, "New Skype");
-        r.addContact(ContactType.MOBILE, "+7 921 222-22-22");
+        r.setContact(ContactType.MAIL, "mail@google.com");
+        r.setContact(ContactType.SKYPE, "New Skype");
+        r.setContact(ContactType.MOBILE, "+7 921 222-22-22");
         //Resume r = new Resume(UUID_2, "name2");
         storage.update(r);
         assertEquals(r, storage.get(UUID_2));

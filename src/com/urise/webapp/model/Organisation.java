@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,8 +12,10 @@ import java.util.Objects;
 public class Organisation implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public static final Organisation EMPTY = new Organisation("", "", Period.EMPTY);
+
     private Link homePage;
-    private List<Period> period;
+    private final List<Period> period;
 
     public Organisation() {
         period = new ArrayList<>();
@@ -26,6 +29,10 @@ public class Organisation implements Serializable {
     public Organisation(String name, String url, List<Period> period) {
         this.homePage = new Link(name, url);
         this.period = period;
+    }
+
+    public Organisation(String name, String url, Period... periods) {
+        this(new Link(name, url), Arrays.asList(periods));
     }
 
     @Override

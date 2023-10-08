@@ -7,10 +7,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Objects;
+
+import static com.urise.webapp.util.DateUtil.NOW;
+import static com.urise.webapp.util.DateUtil.of;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Period implements Serializable {
+    public static final Period EMPTY = new Period();
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate startDate;
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
@@ -21,13 +26,13 @@ public class Period implements Serializable {
     public Period() {
     }
 
-/*    public Period(int startYear, Month startMonth, String title, String description) {
+    public Period(int startYear, Month startMonth, String title, String description) {
         this(of(startYear, startMonth), NOW, title, description);
     }
 
     public Period(int startYear, Month startMonth, int endYear, Month endMonth, String title, String description) {
         this(of(startYear, startMonth), of(endYear, endMonth), title, description);
-    }*/
+    }
 
     public Period(LocalDate startDate, LocalDate endDate, String title, String description) {
         Objects.requireNonNull(startDate, "startDate must not be null");

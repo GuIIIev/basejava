@@ -46,6 +46,19 @@ li {
 }
 
 img {
-    height: 25px;
-    width: 25px;
+    width: 35px;
+    height: 35px;
+    padding: 12px;
+}
+
+.mainTableName {
+    width: 250px;
+}
+
+.mainTableEmail {
+    width: 250px;
+}
+
+.mainTableButtons {
+    width: 50px;
 }

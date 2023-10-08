@@ -9,17 +9,17 @@ import java.util.List;
 public class ResumeTestData {
     public static void main(String[] args) {
         Resume r1 = new Resume("Григорий Кислин");
-        r1.addContact(ContactType.PHONE, "+7(921) 855-0482");
-        r1.addContact(ContactType.SKYPE, "skype:grigory.kislin");
-        r1.addContact(ContactType.MAIL, "gkislin@yandex.ru");
-        r1.addContact(ContactType.LINKEDIN, "Профиль LinkedIn");
-        r1.addContact(ContactType.GITHUB, "Профиль GitHub");
-        r1.addContact(ContactType.STACKOVERFLOW, "Профиль Stackoverflow");
-        r1.addContact(ContactType.HOME_PAGE, "Домашняя страница");
+        r1.setContact(ContactType.PHONE, "+7(921) 855-0482");
+        r1.setContact(ContactType.SKYPE, "skype:grigory.kislin");
+        r1.setContact(ContactType.MAIL, "gkislin@yandex.ru");
+        r1.setContact(ContactType.LINKEDIN, "Профиль LinkedIn");
+        r1.setContact(ContactType.GITHUB, "Профиль GitHub");
+        r1.setContact(ContactType.STACKOVERFLOW, "Профиль Stackoverflow");
+        r1.setContact(ContactType.HOME_PAGE, "Домашняя страница");
 
-        r1.addSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям"));
-        r1.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры."));
-        r1.addSection(SectionType.ACHIEVEMENT, new ListSection(Arrays.asList(
+        r1.setSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям"));
+        r1.setSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры."));
+        r1.setSection(SectionType.ACHIEVEMENT, new ListSection(Arrays.asList(
                 "Организация команды и успешная реализация Java проектов для сторонних заказчиков: приложения автопарк на стеке Spring Cloud/микросервисы, система мониторинга показателей спортсменов на Spring Boot, участие в проекте МЭШ на Play-2, многомодульный Spring Boot + Vaadin проект для комплексных DIY смет",
                 "С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. Более 3500 выпускников.",
                 "Реализация двухфакторной аутентификации для онлайн платформы управления проектами Wrike. Интеграция с Twilio, DuoSecurity, Google Authenticator, Jira, Zendesk.",
@@ -27,7 +27,7 @@ public class ResumeTestData {
                 "Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Commet, HTML5, Highstock для алгоритмического трейдинга.",
                 "Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных сервисов (SOA-base архитектура, JAX-WS, JMS, AS Glassfish). Сбор статистики сервисов и информации о состоянии через систему мониторинга Nagios. Реализация онлайн клиента для администрирования и мониторинга системы по JMX (Jython/ Django).",
                 "Реализация протоколов по приему платежей всех основных платежных системы России (Cyberplat, Eport, Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа.")));
-        r1.addSection(SectionType.QUALIFICATIONS, new ListSection(Arrays.asList(
+        r1.setSection(SectionType.QUALIFICATIONS, new ListSection(Arrays.asList(
                 "JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2",
                 "Version control: Subversion, Git, Mercury, ClearCase, Perforce",
                 "DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle, MySQL, SQLite, MS SQL, HSQLDB",
@@ -42,7 +42,7 @@ public class ResumeTestData {
                 "администрирование Hudson/Jenkins, Ant + custom task, SoapUI, JPublisher, Flyway, Nagios, iReport, OpenCmis, Bonita, pgBouncer",
                 "Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, архитектурных шаблонов, UML, функционального программирования",
                 "Родной русский, английский \"upper intermediate\"")));
-        r1.addSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
+        r1.setSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
                 new Organisation(
                         "Java Online Projects",
                         "javaops.ru",
@@ -114,7 +114,7 @@ public class ResumeTestData {
                                 "Инженер по аппаратному и программному тестированию",
                                 "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).")
                         )))));
-        r1.addSection(SectionType.EDUCATION, new OrganisationSection(Arrays.asList(
+        r1.setSection(SectionType.EDUCATION, new OrganisationSection(Arrays.asList(
                 new Organisation(
                         "Coursera",
                         "coursera.org",
@@ -194,22 +194,22 @@ public class ResumeTestData {
 
     public static Resume createResume(String uuid, String fullName) {
         Resume resume = new Resume(uuid, fullName);
-        resume.addContact(ContactType.PHONE, "some phone number");
-        resume.addContact(ContactType.SKYPE, "skype:skype");
-        resume.addContact(ContactType.MAIL, "mail.ru");
-        resume.addContact(ContactType.LINKEDIN, "Профиль LinkedIn");
-        resume.addContact(ContactType.GITHUB, "Профиль GitHub");
-        resume.addContact(ContactType.STACKOVERFLOW, "Профиль Stackoverflow");
-        resume.addContact(ContactType.HOME_PAGE, "Домашняя страница");
-        resume.addSection(SectionType.OBJECTIVE, new TextSection("над чем-то работаю"));
-        resume.addSection(SectionType.PERSONAL, new TextSection("умный и красивый"));
-        resume.addSection(SectionType.ACHIEVEMENT, new ListSection(Arrays.asList(
+        resume.setContact(ContactType.PHONE, "some phone number");
+        resume.setContact(ContactType.SKYPE, "skype:skype");
+        resume.setContact(ContactType.MAIL, "mail.ru");
+        resume.setContact(ContactType.LINKEDIN, "Профиль LinkedIn");
+        resume.setContact(ContactType.GITHUB, "Профиль GitHub");
+        resume.setContact(ContactType.STACKOVERFLOW, "Профиль Stackoverflow");
+        resume.setContact(ContactType.HOME_PAGE, "Домашняя страница");
+        resume.setSection(SectionType.OBJECTIVE, new TextSection("над чем-то работаю"));
+        resume.setSection(SectionType.PERSONAL, new TextSection("умный и красивый"));
+        resume.setSection(SectionType.ACHIEVEMENT, new ListSection(Arrays.asList(
                 "Организация команды и успешная реализация Java проектов для сторонних заказчиков: приложения автопарк на стеке Spring Cloud/микросервисы, система мониторинга показателей спортсменов на Spring Boot, участие в проекте МЭШ на Play-2, многомодульный Spring Boot + Vaadin проект для комплексных DIY смет",
                 "С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. Более 3500 выпускников.")));
-        resume.addSection(SectionType.QUALIFICATIONS, new ListSection(Arrays.asList(
+        resume.setSection(SectionType.QUALIFICATIONS, new ListSection(Arrays.asList(
                 "JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2",
                 "Version control: Subversion, Git, Mercury, ClearCase, Perforce")));
-        resume.addSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
+        resume.setSection(SectionType.EXPERIENCE, new OrganisationSection(Arrays.asList(
                 new Organisation(
                         "Java Online Projects",
                         "javaops.ru",
@@ -228,7 +228,7 @@ public class ResumeTestData {
                                         "Старший разработчик (backend)",
                                         "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.")
                         )))));
-        resume.addSection(SectionType.EDUCATION, new OrganisationSection(Arrays.asList(
+        resume.setSection(SectionType.EDUCATION, new OrganisationSection(Arrays.asList(
                 new Organisation(
                         "Coursera",
                         "coursera.org",

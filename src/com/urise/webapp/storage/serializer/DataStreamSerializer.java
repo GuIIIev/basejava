@@ -36,7 +36,7 @@ DataStreamSerializer implements StreamSerializer {
                         break;
                     case EXPERIENCE:
                     case EDUCATION:
-                        writeWithException(dos, ((OrganisationSection) section).getOrganizations(), organisation -> {
+                        writeWithException(dos, ((OrganisationSection) section).getOrganisations(), organisation -> {
                             dos.writeUTF(organisation.getHomePage().getName());
                             dos.writeUTF(organisation.getHomePage().getUrl());
                             writeWithException(dos, organisation.getPeriod(), period -> {
@@ -58,21 +58,21 @@ DataStreamSerializer implements StreamSerializer {
             String uuid = dis.readUTF();
             String fullName = dis.readUTF();
             Resume resume = new Resume(uuid, fullName);
-            readWithException(dis, () -> resume.addContact(ContactType.valueOf(dis.readUTF()), dis.readUTF()));
+            readWithException(dis, () -> resume.setContact(ContactType.valueOf(dis.readUTF()), dis.readUTF()));
             readWithException(dis, () -> {
                 SectionType section = SectionType.valueOf(dis.readUTF());
                 switch (section) {
                     case OBJECTIVE:
                     case PERSONAL:
-                        resume.addSection(section, new TextSection(dis.readUTF()));
+                        resume.setSection(section, new TextSection(dis.readUTF()));
                         break;
                     case ACHIEVEMENT:
                     case QUALIFICATIONS:
-                        resume.addSection(section, new ListSection(getSectionList(dis, dis::readUTF)));
+                        resume.setSection(section, new ListSection(getSectionList(dis, dis::readUTF)));
                         break;
                     case EXPERIENCE:
                     case EDUCATION:
-                        resume.addSection(section, new OrganisationSection(getSectionList(dis, () -> new Organisation(
+                        resume.setSection(section, new OrganisationSection(getSectionList(dis, () -> new Organisation(
                                 new Link(dis.readUTF(), dis.readUTF()),
                                 getSectionList(dis, () -> new Period(
                                         localDateReader(dis),
